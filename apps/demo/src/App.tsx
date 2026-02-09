@@ -27,7 +27,11 @@ export default function App() {
         <a href="#api">API</a>
         <a href="#math">Math</a>
 
-        <div className="cta">
+        <div className="meta">
+          <span className="pill">Lon/Lat in degrees</span>
+          <span className="pill">E/N in meters</span>
+          <span className="pill">Performant</span>
+          <span className="pill">Auditable</span>
           <span className="pill">GitHub Pages ready</span>
         </div>
       </aside>
@@ -36,14 +40,9 @@ export default function App() {
         <header className="hero">
           <h1>GeoConverter</h1>
           <p>
-            Fast, auditable coordinate conversion: ITM (EPSG:2039) and Web
+            Fast and auditable coordinate conversion: ITM (EPSG:2039) and Web
             Mercator (EPSG:3857).
           </p>
-          <div className="meta">
-            <span className="pill">Lon/Lat in degrees</span>
-            <span className="pill">E/N in meters</span>
-            <span className="pill">No black boxes</span>
-          </div>
         </header>
 
         <section className="section" id="map">

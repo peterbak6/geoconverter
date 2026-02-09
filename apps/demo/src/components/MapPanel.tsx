@@ -38,7 +38,7 @@ export default function MapPanel({
       container: containerRef.current,
       style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json", // dark
       center: [lon, lat],
-      zoom: 10,
+      zoom: 8,
     });
 
     map.addControl(new maplibregl.NavigationControl(), "top-right");

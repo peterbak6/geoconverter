@@ -115,23 +115,29 @@ export default function AccuracyPerformance({
 
       const out = new Float64Array(2);
 
-      const r1 = bench("WebMercator (tuple alloc)", N, (i) => {
+      const r1 = bench("WebMercator (tuple allocation)", N, (i) => {
         const [x, y] = toWebMercator(lons[i], lats[i]);
         // use values (no-op but prevents optimization)
         if (x === 123456789) console.log(y);
       });
 
-      const r2 = bench("ITM (tuple alloc)", N, (i) => {
+      const r2 = bench("ITM (tuple allocation)", N, (i) => {
         const [e, n] = toItm(lons[i], lats[i], 0 as any);
         if (e === 123456789) console.log(n);
       });
 
-      const r3 = bench("ITM (no tuples: toItmOut)", N, (i) => {
+      const r3 = bench("ITM (allocation-free: toItmOut)", N, (i) => {
         toItmOut(lons[i], lats[i], 0 as any, out, 0);
         if (out[0] === 123456789) console.log(out[1]);
       });
 
-      setBenchResults([r1, r2, r3]);
+      // performance of Proj4:
+        const r4 = bench("Proj4 (tuple allocation)", N, (i) => {
+          const p = proj4("EPSG:4326", "EPSG:2039", [lons[i], lats[i]]);
+          if (p[0] === 123456789) console.log(p[1]);
+        });
+
+      setBenchResults([r1, r2, r3, r4]);
       setIsRunning(false);
     }, 10);
   };
