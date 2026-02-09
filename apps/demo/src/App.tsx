@@ -61,7 +61,7 @@ export default function App() {
         </section>
 
         <section className="section" id="demo">
-          <h2>Demo</h2>
+          <h2>Converter</h2>
           <DemoConverter
             lon={demoLon}
             lat={demoLat}

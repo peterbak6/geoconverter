@@ -115,7 +115,7 @@ export default function DemoConverter({
       </div>
 
       <p className="subtle">
-        Enter Easting/Northing → see LonLat and Web Mercator instantly.
+        Enter Easting/Northing → see LonLat instantly.
       </p>
       <div className="grid2">
         <div className="card">
