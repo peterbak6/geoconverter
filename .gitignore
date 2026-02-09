@@ -1,0 +1,67 @@
+# ---------------------------
+# Node / pnpm
+# ---------------------------
+node_modules/
+.pnpm-store/
+.pnp.cjs
+.pnp.loader.mjs
+
+# Logs
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ---------------------------
+# Build outputs
+# ---------------------------
+dist/
+build/
+out/
+coverage/
+
+# Vite
+.vite/
+*.local
+
+# Storybook (if added later)
+storybook-static/
+
+# ---------------------------
+# TypeScript
+# ---------------------------
+*.tsbuildinfo
+
+# ---------------------------
+# Environment files
+# ---------------------------
+.env
+.env.*
+!.env.example
+
+# ---------------------------
+# IDE / editors
+# ---------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# ---------------------------
+# Map / demo temp data (optional future)
+# ---------------------------
+*.geojson
+*.gpkg
+*.sqlite
+
+# ---------------------------
+# GitHub Pages build artifacts
+# (we will publish from /apps/demo/dist later)
+# ---------------------------
+apps/demo/dist/
