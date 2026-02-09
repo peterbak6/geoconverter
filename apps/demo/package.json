@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@peterbak6/geoconverter": "workspace:*",
+    "katex": "^0.16.28",
     "maplibre-gl": "^5.17.0",
     "proj4": "^2.20.2",
     "react": "^19.2.0",

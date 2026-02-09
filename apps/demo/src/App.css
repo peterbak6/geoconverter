@@ -274,3 +274,49 @@ label {
 }
 .outTable tr:first-child td { border-top: none; }
 .outTable td:last-child { text-align: right; }
+
+.mathHeader {
+  margin-bottom: 12px;
+}
+
+.mathBody {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.mathSection h2 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.mathH3 {
+  margin: 10px 0 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.80);
+  font-weight: 600;
+}
+
+.anchor {
+  color: rgba(255,255,255,0.92);
+  text-decoration: none;
+}
+.anchor:hover {
+  text-decoration: underline;
+}
+
+.formula {
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.04);
+  overflow-x: auto;
+}
+
+/* KaTeX tweaks inside our dark panel */
+.formula .katex {
+  font-size: 1.02em;
+}
+.formula .katex-display {
+  margin: 0;
+}

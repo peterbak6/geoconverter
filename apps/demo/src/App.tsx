@@ -1,8 +1,11 @@
+import { useState } from "react";
 import "./app.css";
 import DemoConverter from "./components/DemoConverter";
 import MapPanel from "./components/MapPanel";
 import AccuracyPerformance from "./components/AccuracyPerformance";
-import { useState } from "react";
+import ApiPanel from "./components/ApiPanel";
+import InstallPanel from "./components/InstallPanel";
+import MathPanel from "./components/MathPanel";
 
 export default function App() {
   const [demoLon, setDemoLon] = useState(35.503194);
@@ -81,19 +84,16 @@ export default function App() {
           <AccuracyPerformance lon={demoLon} lat={demoLat} />
         </section>
 
-        <section className="section" id="api">
-          <h2>API</h2>
-          <div className="card">API snippet placeholder</div>
+        <section className="section" id="install">
+          <InstallPanel />
         </section>
 
-        <section className="section" id="install">
-          <h2>Install</h2>
-          <div className="card">Install snippet placeholder</div>
+        <section className="section" id="api">
+          <ApiPanel />
         </section>
 
         <section className="section" id="math">
-          <h2>Math</h2>
-          <div className="card">Formulas placeholder</div>
+          <MathPanel />
         </section>
       </main>
     </div>
