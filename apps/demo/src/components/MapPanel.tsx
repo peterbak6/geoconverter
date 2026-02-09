@@ -48,12 +48,12 @@ export default function MapPanel({
       const [wmX, wmY] = toWebMercator(ll.lng, ll.lat);
       const [itmE, itmN] = toItm(ll.lng, ll.lat);
       setHover({
-        lon: ll.lng,
-        lat: ll.lat,
-        wmX,
-        wmY,
-        itmE,
-        itmN,
+        lon: Number(ll.lng),
+        lat: Number(ll.lat),
+        wmX: Number(wmX),
+        wmY: Number(wmY),
+        itmE: Number(itmE),
+        itmN: Number(itmN),
         x: e.point.x,
         y: e.point.y,
       });
@@ -62,7 +62,7 @@ export default function MapPanel({
     map.on("mouseleave", () => setHover(null));
 
     map.on("click", (e) => {
-      onPick(e.lngLat.lng, e.lngLat.lat);
+      onPick(Number(e.lngLat.lng.toFixed(6)), Number(e.lngLat.lat.toFixed(6)));
     });
 
     mapRef.current = map;

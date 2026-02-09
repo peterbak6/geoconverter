@@ -15,14 +15,14 @@ export default function DemoConverter({
   lat: number;
   onChange: (lon: number, lat: number) => void;
 }) {
-  const [lonStr, setLonStr] = useState(lon.toString());
-  const [latStr, setLatStr] = useState(lat.toString());
+  const [lonStr, setLonStr] = useState(lon.toFixed(6));
+  const [latStr, setLatStr] = useState(lat.toFixed(6));
 
   const [northingStr, setNorthingStr] = useState("");
   const [eastingStr, setEastingStr] = useState("");
 
-  useEffect(() => setLonStr(String(lon)), [lon]);
-  useEffect(() => setLatStr(String(lat)), [lat]);
+  useEffect(() => setLonStr(lon.toFixed(6)), [lon]);
+  useEffect(() => setLatStr(lat.toFixed(6)), [lat]);
 
   const toITMResult = useMemo(() => {
     const lon = toNum(lonStr);

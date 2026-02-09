@@ -142,8 +142,7 @@ export default function AccuracyPerformance({
       <div className="card">
         <h3>Accuracy (vs Proj4)</h3>
         <div className="subtle">
-          Deltas computed using the exact EPSG:2039 proj string (Proj4) compared
-          to GeoConverter.
+          Deltas computed using the EPSG:2039 Proj4 string compared to GeoConverter.
         </div>
 
         <div style={{ marginTop: 12 }} className="table">
@@ -168,9 +167,6 @@ export default function AccuracyPerformance({
           ))}
         </div>
 
-        <div className="subtle" style={{ marginTop: 10 }}>
-          (We can also show backward vs Proj4: Δlon/Δlat after inverse.)
-        </div>
       </div>
 
       {/* ---------- Performance panel ---------- */}

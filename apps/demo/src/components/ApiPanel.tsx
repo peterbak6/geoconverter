@@ -4,7 +4,7 @@ export default function ApiPanel() {
       <h3>API</h3>
 
       <pre className="code">
-{`import { toItm, fromItm, toWebMercator, fromWebMercator } from "@peterbak6/geoconverter";
+{`import { toItm, fromItm, toWebMercator, fromWebMercator, toItmOut } from "@peterbak6/geoconverter";
 
 // ITM
 const [E, N] = toItm(lon, lat);
