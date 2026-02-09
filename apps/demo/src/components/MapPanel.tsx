@@ -25,6 +25,8 @@ export default function MapPanel({
 }) {
   const mapRef = useRef<maplibregl.Map | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
+  const markerRef = useRef<maplibregl.Marker | null>(null);
+
   const [hover, setHover] = useState<HoverInfo | null>(null);
 
   // init once
@@ -34,7 +36,7 @@ export default function MapPanel({
 
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style: "https://tiles.openfreemap.org/styles/liberty", // light
+      style: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json", // dark
       center: [lon, lat],
       zoom: 10,
     });
@@ -65,9 +67,19 @@ export default function MapPanel({
 
     mapRef.current = map;
 
+    const el = document.createElement("div");
+    el.className = "pickMarker";
+    el.title = "Selected coordinate";
+
+    markerRef.current = new maplibregl.Marker({ element: el, anchor: "center" })
+      .setLngLat([lon, lat])
+      .addTo(map);
+
     requestAnimationFrame(() => map.resize());
 
     return () => {
+      markerRef.current?.remove();
+      markerRef.current = null;
       map.remove();
       mapRef.current = null;
     };
@@ -79,7 +91,12 @@ export default function MapPanel({
     const map = mapRef.current;
     if (!map) return;
 
-    map.easeTo({ center: [lon, lat], duration: 450 });
+    // map.easeTo({ center: [lon, lat], duration: 450 });
+  }, [lon, lat]);
+
+  useEffect(() => {
+    if (!markerRef.current) return;
+    markerRef.current.setLngLat([lon, lat]);
   }, [lon, lat]);
 
   return (
@@ -88,7 +105,10 @@ export default function MapPanel({
         <div ref={containerRef} className="mapCanvas" />
 
         {hover && (
-          <div className="mapTooltip" style={{ left: hover.x + 12, top: hover.y + 12 }}>
+          <div
+            className="mapTooltip"
+            style={{ left: hover.x + 12, top: hover.y + 12 }}
+          >
             <div className="ttTitle">Hover coordinate</div>
 
             <div className="ttRow">
@@ -112,15 +132,13 @@ export default function MapPanel({
               </span>
             </div>
 
-            <div className="subtle" style={{ marginTop: 8 }}>
-              Click to set Demo inputs
-            </div>
           </div>
         )}
       </div>
 
       <div className="subtle" style={{ marginTop: 10 }}>
-        Tip: move your mouse over the map to see the three coordinate systems. Click to set the Demo Lon/Lat.
+        Tip: move your mouse over the map to see the three coordinate systems.
+        Click to set the Demo Lon/Lat below.
       </div>
     </div>
   );

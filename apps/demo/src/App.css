@@ -211,10 +211,15 @@ label {
 
 .mapWrap {
   position: relative;
-  height: 260px;
+  height: 410px;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.10);
+}
+
+.mapWrap .maplibregl-canvas,
+.mapWrap .maplibregl-canvas-container {
+  cursor: crosshair !important;
 }
 
 .mapCanvas {
@@ -231,7 +236,7 @@ label {
   padding: 10px 12px;
   border-radius: 12px;
   border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(7, 18, 31, 0.92);
+  background: rgba(7, 18, 31, 0.5);
   box-shadow: var(--shadow);
   pointer-events: none;
   backdrop-filter: blur(6px);
@@ -319,4 +324,34 @@ label {
 }
 .formula .katex-display {
   margin: 0;
+}
+
+.pickMarker {
+  width: 22px;
+  height: 22px;
+  pointer-events: none; /* clicks go through to the map */
+  position: relative;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
+}
+
+.pickMarker::before,
+.pickMarker::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 22px;
+  height: 1px;
+  background: #ffff99;
+  border-radius: 0px;
+  transform-origin: center;
+}
+
+.pickMarker::before { transform: translate(-50%, -50%) rotate(45deg); }
+.pickMarker::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+
+/* subtle outline so it works on light map tiles */
+.pickMarker::before,
+.pickMarker::after {
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
 }

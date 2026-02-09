@@ -18,15 +18,13 @@ export default function App() {
           <span className="dot" />
           GeoConverter
         </div>
-        <small>
-          Demo • Map • Accuracy & Performance • API • Install • Math
-        </small>
 
-        <a href="#demo">Demo</a>
         <a href="#map">Map</a>
-        <a href="#accuracy">Accuracy &amp; Performance</a>
-        <a href="#api">API</a>
+        <a href="#demo">Demo</a>
+        <a href="#accuracy">Accuracy </a>
+        <a href="#accuracy">Performance</a>
         <a href="#install">Install</a>
+        <a href="#api">API</a>
         <a href="#math">Math</a>
 
         <div className="cta">
@@ -65,9 +63,6 @@ export default function App() {
 
         <section className="section" id="demo">
           <h2>Demo</h2>
-          <p className="subtle">
-            Enter Lon/Lat → see ITM and Web Mercator instantly.
-          </p>
           <DemoConverter
             lon={demoLon}
             lat={demoLat}
