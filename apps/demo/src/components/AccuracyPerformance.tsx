@@ -132,10 +132,10 @@ export default function AccuracyPerformance({
       });
 
       // performance of Proj4:
-        const r4 = bench("Proj4 (tuple allocation)", N, (i) => {
-          const p = proj4("EPSG:4326", "EPSG:2039", [lons[i], lats[i]]);
-          if (p[0] === 123456789) console.log(p[1]);
-        });
+      const r4 = bench("Proj4 (tuple allocation)", N, (i) => {
+        const p = proj4("EPSG:4326", "EPSG:2039", [lons[i], lats[i]]);
+        if (p[0] === 123456789) console.log(p[1]);
+      });
 
       setBenchResults([r1, r2, r3, r4]);
       setIsRunning(false);
@@ -148,31 +148,47 @@ export default function AccuracyPerformance({
       <div className="card">
         <h3>Accuracy (vs Proj4)</h3>
         <div className="subtle">
-          Deltas computed using the EPSG:2039 Proj4 string compared to GeoConverter.
+          Deltas computed using the EPSG:2039 Proj4 string compared to
+          GeoConverter.
         </div>
 
-        <div style={{ marginTop: 12 }} className="table">
-          <div className="tr th">
-            <div>Lon</div>
-            <div>Lat</div>
-            <div>ΔE (m)</div>
-            <div>ΔN (m)</div>
-            <div>Roundtrip Δlon (°)</div>
-            <div>Roundtrip Δlat (°)</div>
-          </div>
-
-          {rows.map((r, idx) => (
-            <div key={idx} className="tr">
-              <div className="mono">{r.lon.toFixed(4)}</div>
-              <div className="mono">{r.lat.toFixed(4)}</div>
-              <div className="mono">{r.dE.toFixed(3)}</div>
-              <div className="mono">{r.dN.toFixed(3)}</div>
-              <div className="mono">{r.rtLonDeg.toExponential(2)}</div>
-              <div className="mono">{r.rtLatDeg.toExponential(2)}</div>
+        {rows.map((r, idx) => (
+          <div key={idx} style={{ marginTop: 12 }}>
+            <div className="subtle" style={{ marginBottom: 8 }}>
+              Accuracy check for 
+              <span style={{ marginLeft: 8 }}>
+                lon: {r.lon.toFixed(4)}, lat: {r.lat.toFixed(4)}
+              </span>
             </div>
-          ))}
-        </div>
 
+            <div className="table">
+              <div className="tr th">
+                <div>Test</div>
+                <div>Value</div>
+              </div>
+
+              <div className="tr">
+                <div>ΔE (m)</div>
+                <div className="mono">{r.dE.toFixed(3)}</div>
+              </div>
+
+              <div className="tr">
+                <div>ΔN (m)</div>
+                <div className="mono">{r.dN.toFixed(3)}</div>
+              </div>
+
+              <div className="tr">
+                <div>Roundtrip Δlon (°)</div>
+                <div className="mono">{r.rtLonDeg.toExponential(2)}</div>
+              </div>
+
+              <div className="tr">
+                <div>Roundtrip Δlat (°)</div>
+                <div className="mono">{r.rtLatDeg.toExponential(2)}</div>
+              </div>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* ---------- Performance panel ---------- */}
@@ -180,7 +196,7 @@ export default function AccuracyPerformance({
         <h3>Performance (in-browser)</h3>
         <div className="subtle">
           Micro-benchmark (not a formal suite). Results vary by
-          browser/machine/JIT.
+          browser/machine/etc.
         </div>
 
         <div className="row" style={{ marginTop: 10 }}>

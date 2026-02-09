@@ -74,7 +74,7 @@ export default function App() {
 
         <section className="section" id="accuracy">
           <h2>Accuracy &amp; Performance</h2>
-          <p className="subtle">Roundtrip drift + (next) benchmark results.</p>
+          <p className="subtle">Roundtrip drift + performance benchmark results.</p>
           <AccuracyPerformance lon={demoLon} lat={demoLat} />
         </section>
 
