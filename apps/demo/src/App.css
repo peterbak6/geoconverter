@@ -119,6 +119,14 @@ h3 {
 .hero h1 { margin: 0; font-size: 30px; letter-spacing: 0.2px; }
 .hero p { margin: 8px 0 0; color: var(--muted); }
 
+.mathSection > p {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(255,255,255,0.60);
+  max-width: 760px;
+}
+
 .main input,
 .main select,
 .main button {
@@ -360,3 +368,33 @@ label {
 .pickMarker::after {
   box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
 }
+
+.miniCard {
+  border: 1px solid rgba(255,255,255,0.10);
+  background: rgba(255,255,255,0.03);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.miniTitle {
+  font-weight: 650;
+  color: rgba(255,255,255,0.92);
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.miniText {
+  color: rgba(255,255,255,0.70);
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.footer {
+  margin-top: 28px;
+  padding: 18px 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,0.05);
+  box-shadow: var(--shadow);
+  text-align: center;
+} 

@@ -34,18 +34,25 @@ function Subhead({ children }: { children: React.ReactNode }) {
   return <h3 className="mathH3">{children}</h3>;
 }
 
+function CodeBlock({ code, className }: { code: string; className?: string }) {
+  return <pre className={className + " code"}>{code}</pre>;
+}
+
 export default function MathPanel() {
   return (
     <div className="card">
       <header className="mathHeader">
-        <h3 style={{ marginBottom: 6 }}>Israeli Transverse Mercator Projection</h3>
-        <div className="subtle">
-          Step-by-step formulas used by the implementation (GRS80 / EPSG:2039).
-        </div>
+        <h2 style={{ marginBottom: 6 }}>
+          Computational steps for Israeli Transverse Mercator Projection
+        </h2>
       </header>
 
       <div className="mathBody">
-        <Section id="prime-vertical-radius" title="Prime vertical radius of curvature">
+        <Section
+          id="prime-vertical-radius"
+          title="Prime vertical radius of curvature"
+        >
+          <p className="mathDesc">Local curvature radius used to map geodetic to Cartesian.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 N(\phi) &= \frac{a}{\sqrt{1 - e^2 \sin^2 \phi}}
@@ -54,6 +61,7 @@ N(\phi) &= \frac{a}{\sqrt{1 - e^2 \sin^2 \phi}}
         </Section>
 
         <Section id="ecef-coordinates" title="ECEF coordinates">
+          <p className="mathDesc">Convert lon/lat/height to Earth-centered coordinates.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 X &= (N + h)\cos\phi\cos\lambda \\
@@ -64,6 +72,7 @@ Z &= ((1 - e^2)N + h)\sin\phi
         </Section>
 
         <Section id="small-angle-helmert" title="Small-angle Helmert">
+          <p className="mathDesc">Apply datum shift into the target datum (7-parameter transform).</p>
           <Formula
             tex={String.raw`\begin{aligned}
 X' &= dx + (1 + s)(X - r_z Y + r_y Z) \\
@@ -75,6 +84,7 @@ Z' &= dz + (1 + s)(-r_y X + r_x Y + Z)
 
         <Section id="ecef-to-geodetic" title="ECEF to Geodetic">
           <Subhead>Intermediate</Subhead>
+          <p className="mathDesc">Iteratively recover lon/lat from ECEF after the datum shift.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 p &= \sqrt{X^2 + Y^2} \\
@@ -83,6 +93,7 @@ p &= \sqrt{X^2 + Y^2} \\
           />
 
           <Subhead>Latitude</Subhead>
+          <p className="mathDesc">Calculate latitude from ECEF coordinates.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 \phi &= \arctan\left(\frac{Z + e'^2 b \sin^3 \theta}{p - e^2 a \cos^3 \theta}\right)
@@ -90,6 +101,7 @@ p &= \sqrt{X^2 + Y^2} \\
           />
 
           <Subhead>Longitude</Subhead>
+          <p className="mathDesc">Calculate longitude from ECEF coordinates.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 \lambda &= \arctan\left(\frac{Y}{X}\right)
@@ -98,6 +110,7 @@ p &= \sqrt{X^2 + Y^2} \\
         </Section>
 
         <Section id="meridional-arc" title="Meridional arc">
+          <p className="mathDesc">Accumulate northing along the central meridian.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 M(\phi) &= a\left(A_0\phi - A_2\sin 2\phi + A_4\sin 4\phi - A_6\sin 6\phi\right)
@@ -106,6 +119,7 @@ M(\phi) &= a\left(A_0\phi - A_2\sin 2\phi + A_4\sin 4\phi - A_6\sin 6\phi\right)
         </Section>
 
         <Section id="auxiliary-values" title="Auxiliary values">
+          <p className="mathDesc">Precompute terms used in the TM series.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 T &= \tan^2 \phi \\
@@ -116,6 +130,7 @@ A &= (\lambda - \lambda_0)\cos \phi
         </Section>
 
         <Section id="easting-northing" title="Easting / Northing">
+          <p className="mathDesc">TM series expansion to projected meters.</p>
           <Formula
             tex={String.raw`\begin{aligned}
 E &= E_0 + k_0 N\Bigg( A +
@@ -131,6 +146,26 @@ N\tan\phi\Bigg(
 \Bigg)
 \Bigg)
 \end{aligned}`}
+          />
+        </Section>
+
+        <Section id="proj4-definition" title="Proj4 definition used (EPSG:2039)">
+
+          <p className="mathDesc">
+            Used only for validation in the Accuracy section (GeoConverter does
+            not depend on Proj4 at runtime).
+          </p>
+
+          <CodeBlock className="formula" 
+            code={`import proj4 from "proj4";
+
+proj4.defs(
+  "EPSG:2039",
+  "+proj=tmerc +lat_0=31.7343936111111 +lon_0=35.2045169444444 +k=1.0000067 " +
+  "+x_0=219529.584 +y_0=626907.39 +ellps=GRS80 " +
+  "+towgs84=23.772,17.49,17.859,-0.3132,-1.85274,1.67299,-5.4262 " +
+  "+units=m +no_defs +type=crs"
+);`}
           />
         </Section>
       </div>
