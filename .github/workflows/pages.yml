@@ -31,7 +31,9 @@ jobs:
       - name: Install deps
         run: pnpm install --frozen-lockfile
 
-      # IMPORTANT: build demo by path (not filter)
+      - name: Build library
+        run: pnpm -C packages/geoconverter build
+
       - name: Build demo
         run: pnpm -C apps/demo build
 
