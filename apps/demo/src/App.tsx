@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./app.css";
+import "./App.css";
 import DemoConverter from "./components/DemoConverter";
 import MapPanel from "./components/MapPanel";
 import AccuracyPerformance from "./components/AccuracyPerformance";
