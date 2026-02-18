@@ -4,7 +4,10 @@ export default function ApiPanel() {
       <h3>API</h3>
 
       <pre className="code">
-{`import { toItm, fromItm, toItmOut } from "@peterbak6/geoconverter";
+        {`import { toItm, fromItm, toItmOut } from "@peterbak6/geoconverter";
+
+const lon = 35.503194;
+const lat = 32.547015;
 
 // ITM
 const [E, N] = toItm(lon, lat);

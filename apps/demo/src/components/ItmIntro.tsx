@@ -49,7 +49,8 @@ export default function ItmIntro() {
         </div>
 
         <p className="subtle" style={{ marginTop: 14 }}>
-          Related terms: ITM converter, EPSG:2039, Israeli grid, Transverse Mercator Israel, Easting Northing Israel.
+          Related terms: ITM converter, EPSG:2039, Israeli grid, Transverse
+          Mercator Israel, Easting Northing Israel.
         </p>
       </div>
     </div>

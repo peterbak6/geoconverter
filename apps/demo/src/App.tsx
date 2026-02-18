@@ -5,7 +5,6 @@ import MapPanel from "./components/MapPanel";
 import AccuracyPerformance from "./components/AccuracyPerformance";
 import ApiPanel from "./components/ApiPanel";
 import InstallPanel from "./components/InstallPanel";
-import MathPanel from "./components/MathPanel";
 import ItmIntro from "./components/ItmIntro";
 
 export default function App() {
@@ -20,31 +19,42 @@ export default function App() {
           ITM Coordinates Converter
         </div>
 
-        <a href="#map">Map</a>
-        <a href="#demo">Converter</a>
-        <a href="#accuracy">Accuracy </a>
-        <a href="#accuracy">Performance</a>
+        <a href="#intro">Introduction</a>
+        <a href="#map">Map interaction</a>
+        <a href="#demo">Converter (to & from ITM)</a>
+        <a href="#accuracy">Accuracy & Performance</a>
         <a href="#install">Install</a>
-        <a href="#api">API</a>
-        <a href="#math">Math</a>
+        <a href="#api">API & Usage</a>
 
         <div className="meta">
           <span className="pill">ITM</span>
           <span className="pill">EPSG:2039</span>
-          <span className="pill">Performant</span>
-          <span className="pill">Auditable</span>
+          <span className="pill">Converter</span>
+          <span className="pill">Performance</span>
         </div>
+        <footer className="footer">
+          <p>
+            Built by <a href="https://peterbak.com">Peter Bak</a> .{" "}
+          </p>
+          <p>
+            <a href="https://github.com/peterbak6/geoconverter">GitHub</a>
+            {/* {" · "} */}
+            <a href="https://visualanalytics.co.il">Website</a>
+            {/* {" · "} */}
+            <a href="mailto:peter@visualanalytics.co.il">Email</a>
+          </p>
+        </footer>
       </aside>
 
-      <main className="main">
+      <main className="main" id="intro">
         <header className="hero">
-          <h1>ITM Coordinates Converter</h1>
+          <h1>Israeli Transverse Mercator (ITM) Coordinates Converter</h1>
           <p>
-            GeoConverter is a numerically stable, auditable coordinate
-            conversion library optimized for high-throughput workloads. Designed
-            for movement/trajectory pipelines, vehicle tracing and trecking,
-            mapping UIs, and large batches (millions of objects), with
-            allocation-free APIs to keep performance predictable.
+            This is a numerically stable, auditable coordinate conversion
+            library optimized for high-throughput workloads. Designed for
+            movement/trajectory pipelines, vehicle tracing and trecking, mapping
+            UIs, and large batches (millions of objects), with allocation-free
+            APIs to keep performance predictable.
           </p>
         </header>
 
@@ -94,27 +104,6 @@ export default function App() {
         <section className="section" id="api">
           <ApiPanel />
         </section>
-
-        <section className="section" id="math">
-          <MathPanel />
-        </section>
-        <footer className="footer">
-          <p>
-            Built by <a href="https://peterbak.com">Peter Bak</a>{" "}
-            .{" "}
-          </p>
-          <p>
-            <a href="https://github.com/peterbak6/geoconverter">
-              Source on GitHub
-            </a>
-            {" · "}
-            <a href="https://visualanalytics.co.il">Website</a>
-            {" · "}
-            <a href="mailto:peter@visualanalytics.co.il">
-              Email
-            </a>
-          </p>
-        </footer>
       </main>
     </div>
   );
