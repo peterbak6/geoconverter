@@ -1,6 +1,6 @@
 {
   "name": "@peterbak6/geoconverter",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "description": "A numerically stable, auditable coordinate conversion library optimized for high-throughput workloads.",
   "type": "module",
