@@ -26,17 +26,23 @@
     "test": "node -e \"console.log('tests wired later')\""
   },
   "keywords": [
-    "itm",
-    "epsg2039",
-    "israel",
-    "israeli-transverse-mercator",
-    "transverse-mercator",
-    "coordinate-conversion",
-    "geodesy",
-    "gis",
-    "proj4",
-    "mapping"
+    "israeli transverse mercator",
+    "ITM",
+    "EPSG:2039",
+    "coordinate conversion",
+    "geospatial",
+    "projection",
+    "GIS",
+    "WGS84",
+    "web mercator",
+    "maplibre",
+    "deck.gl",
+    "proj4 alternative",
+    "high performance geospatial",
+    "javascript GIS",
+    "typescript GIS"
   ],
+  "author": "Peter Bak",
   "homepage": "https://peterbak6.github.io/geoconverter/",
   "repository": {
     "type": "git",
